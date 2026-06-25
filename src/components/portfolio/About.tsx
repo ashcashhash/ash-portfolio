@@ -1,11 +1,23 @@
+import { Cpu, Headphones, Rocket } from "lucide-react";
 import { motion } from "motion/react";
 import { Section } from "./Section";
-import { Cpu, Headphones, Rocket } from "lucide-react";
 
 const TRAITS = [
-  { icon: Cpu, label: "Systems Thinker", desc: "I design for scale — clean architecture, typed APIs, predictable state." },
-  { icon: Headphones, label: "Rhythm Driven", desc: "Years on stage taught me timing. I ship in tight, productive loops." },
-  { icon: Rocket, label: "Product Minded", desc: "I sweat the pixels. Animations, micro-interactions, performance." },
+  {
+    icon: Cpu,
+    label: "Systems Thinker",
+    desc: "I design for scale — clean architecture, typed APIs, predictable state.",
+  },
+  {
+    icon: Headphones,
+    label: "Rhythm Driven",
+    desc: "Years on stage taught me timing. I ship in tight, productive loops.",
+  },
+  {
+    icon: Rocket,
+    label: "Product Minded",
+    desc: "I sweat the pixels. Animations, micro-interactions, performance.",
+  },
 ];
 
 export function About() {
@@ -14,7 +26,7 @@ export function About() {
       id="about"
       zone="02 · About"
       title="About me"
-      subtitle="Half engineer, half guitarist. I build interfaces that feel like instruments — responsive, expressive, and quietly precise."
+      subtitle="Engineer x Musician. I build interfaces that feel like music — responsive, expressive, and quietly precise."
     >
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         {TRAITS.map((t, i) => (

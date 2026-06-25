@@ -1,16 +1,16 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
-  Outlet,
+  HeadContent,
   Link,
+  Outlet,
+  Scripts,
   createRootRouteWithContext,
   useRouter,
-  HeadContent,
-  Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
-import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
   return (
@@ -77,11 +77,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Ashnish — Developer & Guitarist" },
-      { name: "description", content: "Portfolio of Ashnish: a full-stack engineer and guitarist building calm, expressive software." },
+      { title: "Ashnish Sharma" },
+      {
+        name: "description",
+        content:
+          "Portfolio of Ashnish: a full-stack engineer and guitarist building calm, expressive software.",
+      },
       { name: "author", content: "Ashnish" },
-      { property: "og:title", content: "Ashnish — Developer & Guitarist" },
-      { property: "og:description", content: "A calm, music-inspired portfolio for a developer who treats every product like a well-tuned instrument." },
+      { property: "og:title", content: "Ashnish Sharma" },
+      {
+        property: "og:description",
+        content:
+          "A calm, music-inspired portfolio for a developer who treats every product like a well-tuned instrument.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },

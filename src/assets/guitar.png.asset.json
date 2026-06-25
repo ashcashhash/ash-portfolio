@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "asset_id": "be34f9ad-d587-433b-a243-dc6e91efed18",
-  "project_id": "0b9d4da9-c8e6-4d71-9cd2-535261d603ad",
-  "url": "/__l5e/assets-v1/be34f9ad-d587-433b-a243-dc6e91efed18/guitar.png",
-  "r2_key": "a/v1/0b9d4da9-c8e6-4d71-9cd2-535261d603ad/be34f9ad-d587-433b-a243-dc6e91efed18/guitar.png",
+  "asset_id": "ash-guitar",
+  "project_id": "ash-musical-portfolio",
+  "url": "src\\assets\\guitar.png",
+  "r2_key": "src\\assets\\guitar.png",
   "original_filename": "guitar.png",
   "size": 375679,
   "content_type": "image/png",

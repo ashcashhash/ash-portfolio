@@ -1,23 +1,36 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { HUD } from "@/components/portfolio/HUD";
-import { Cursor } from "@/components/portfolio/Cursor";
-import { Hero } from "@/components/portfolio/Hero";
 import { About } from "@/components/portfolio/About";
-import { Experience } from "@/components/portfolio/Experience";
-import { Projects } from "@/components/portfolio/Projects";
-import { Education } from "@/components/portfolio/Education";
 import { Certifications } from "@/components/portfolio/Certifications";
-import { Skills } from "@/components/portfolio/Skills";
 import { Contact } from "@/components/portfolio/Contact";
+import { Cursor } from "@/components/portfolio/Cursor";
+import { Education } from "@/components/portfolio/Education";
+import { Experience } from "@/components/portfolio/Experience";
+import { Hero } from "@/components/portfolio/Hero";
+import { HUD } from "@/components/portfolio/HUD";
 import { Marquee } from "@/components/portfolio/Marquee";
+import { Projects } from "@/components/portfolio/Projects";
+import { Skills } from "@/components/portfolio/Skills";
+import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Ashnish — Developer & Guitarist" },
-      { name: "description", content: "Portfolio of Ashnish — a full-stack engineer and guitarist building calm, expressive software." },
-      { property: "og:title", content: "Ashnish — Developer & Guitarist" },
-      { property: "og:description", content: "A music-inspired developer portfolio with thoughtful motion and quiet polish." },
+      { title: "Ashnish Sharma" },
+      {
+        name: "description",
+        content:
+          "Portfolio of Ashnish — a full-stack engineer and guitarist building calm, expressive software.",
+      },
+      { property: "og:title", content: "Ashnish Sharma" },
+      {
+        property: "og:description",
+        content: "A music-inspired developer portfolio with thoughtful motion and quiet polish.",
+      },
+    ],
+    links: [
+      {
+        rel: "icon",
+        href: "/logo.png",
+      },
     ],
   }),
   component: Index,

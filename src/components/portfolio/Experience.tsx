@@ -1,35 +1,35 @@
+import { Disc3 } from "lucide-react";
 import { motion } from "motion/react";
 import { Section } from "./Section";
-import { Disc3 } from "lucide-react";
 
 const QUESTS = [
   {
-    year: "2024 — Now",
-    role: "Staff Engineer · Reverb Labs",
-    focus: "Realtime collaboration engine",
-    log: "Led an 8-engineer team rebuilding the core editor in React 19 + WebGL. Cut p95 latency by 62% and shipped multi-cursor presence at 60 FPS.",
+    year: "2025 — Now",
+    role: "Consultant · ZS Associates",
+    focus: "Designed Well Architected Solutions & AI Enabled Workflows",
+    log: "Designed and shipped multiple web apps for Big Pharma clients. Leading the team of 50+ members",
     tags: ["Performance", "Leadership"],
   },
   {
-    year: "2022 — 2024",
-    role: "Senior Engineer · Amplifi",
-    focus: "Browser-based audio studio",
-    log: "Built a browser DAW with Web Audio + WASM. Launched to 40k creators in 6 months. Designed the plugin SDK from scratch.",
-    tags: ["Audio", "Developer experience"],
+    year: "2023 — 2025",
+    role: "Associate Consultant · ZS Associates",
+    focus: "Pharma Process Reimagined platform",
+    log: "Built multiple web apps for Big Pharma clients. Led the frontend team, introduced React 18 + TypeScript, and shipped a design system with motion and accessibility baked in.",
+    tags: ["Full-Stack", "Design systems", "Developer experience"],
   },
   {
-    year: "2019 — 2022",
-    role: "Full-stack Engineer · Pixelroom",
+    year: "2020 — 2022",
+    role: "Associate · ZS Associates",
     focus: "Cross-product design system",
     log: "Owned the design system across 14 apps. TS-first components, motion guidelines, and accessibility built in from day one.",
-    tags: ["Design systems", "Accessibility"],
+    tags: ["Design systems", "Accessibility", "Frontend"],
   },
   {
-    year: "2017 — 2019",
-    role: "Junior Engineer · Garage Studio",
+    year: "2020",
+    role: "Intern · ZS Associates",
     focus: "First production codebase",
-    log: "Learned the craft on a small team shipping React + Node apps for indie musicians. Wrote my first synth plugin here.",
-    tags: ["Foundations"],
+    log: "Learned the craft on a small team shipping Angular + Flask apps for Capabilities showcase. Created my first pull request here.",
+    tags: ["Angular", "Flask", "GitHub"],
   },
 ];
 
@@ -39,12 +39,15 @@ export function Experience() {
       id="experience"
       zone="03 · Experience"
       title="My journey so far"
-      subtitle="A timeline of the teams I&apos;ve joined, the things I&apos;ve shipped, and what I learned along the way."
+      subtitle="A timeline of the teams I've joined, the things I've shipped, and what I learned along the way."
     >
       <div className="relative">
         <div
           className="absolute left-4 top-0 h-full w-px md:left-1/2"
-          style={{ background: "linear-gradient(180deg, transparent, var(--neon), var(--neon-2), transparent)" }}
+          style={{
+            background:
+              "linear-gradient(180deg, transparent, var(--neon), var(--neon-2), transparent)",
+          }}
         />
         <ul className="space-y-12">
           {QUESTS.map((q, i) => (
@@ -58,13 +61,17 @@ export function Experience() {
             >
               <div className={`pl-12 md:pl-0 ${i % 2 ? "md:pr-12 md:text-right" : "md:pr-12"}`}>
                 <div className="panel relative overflow-hidden p-6 [direction:ltr]">
-                  <div className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">{q.year}</div>
+                  <div className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+                    {q.year}
+                  </div>
                   <h3 className="mt-1 text-2xl">{q.role}</h3>
                   <div className="mt-1 text-sm text-magenta">{q.focus}</div>
                   <p className="mt-3 text-sm text-foreground/80">{q.log}</p>
                   <div className="mt-4 flex flex-wrap gap-2">
                     {q.tags.map((r) => (
-                      <span key={r} className="hud-chip !text-[10px]">{r}</span>
+                      <span key={r} className="hud-chip !text-[10px]">
+                        {r}
+                      </span>
                     ))}
                   </div>
                 </div>

@@ -1,7 +1,7 @@
 const ITEMS = [
   "♪ Code in 4/4 time",
   "Composing in TypeScript",
-  "Engineer × Guitarist",
+  "Engineer × Musician",
   "Standard tuning · E A D G B E",
   "Capo on the second fret of life",
   "Open for new sessions",
