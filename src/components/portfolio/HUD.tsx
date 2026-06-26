@@ -43,7 +43,10 @@ export function HUD() {
       />
       <header className="fixed inset-x-0 top-4 z-40 flex justify-center px-4">
         <nav className="panel flex w-full max-w-3xl items-center justify-between gap-4 py-2.5 pl-4 pr-2">
-          <a href="#hero" className="flex items-center gap-2 font-display text-base font-medium tracking-tight text-foreground">
+          <a
+            href="#hero"
+            className="flex items-center gap-2 font-display text-base font-medium tracking-tight text-foreground"
+          >
             <AudioLines className="h-4 w-4 text-[color:var(--neon)]" />
             <span>Ashnish</span>
           </a>
@@ -54,7 +57,9 @@ export function HUD() {
                 key={z.id}
                 href={`#${z.id}`}
                 className={`relative rounded-full px-3 py-1.5 text-[13px] transition-colors ${
-                  active === z.id ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                  active === z.id
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {active === z.id && (

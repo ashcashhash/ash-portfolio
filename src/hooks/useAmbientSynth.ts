@@ -70,11 +70,7 @@ export function useAmbientSynth() {
       let index = 0;
 
       loop.current = new Tone.Loop((time) => {
-        synth.triggerAttackRelease(
-          chords[index],
-          "8m",
-          time
-        );
+        synth.triggerAttackRelease(chords[index], "8m", time);
 
         index = (index + 1) % chords.length;
       }, "8m");

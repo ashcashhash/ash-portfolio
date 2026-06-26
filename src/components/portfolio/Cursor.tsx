@@ -44,7 +44,14 @@ export function Cursor() {
         style={{ transformOrigin: "50% 10%" }}
         className="-translate-x-1/4 -translate-y-1"
       >
-        <svg width="22" height="26" viewBox="0 0 36 40" fill="none" aria-hidden style={{ transform: "scaleY(-1)" }}>
+        <svg
+          width="22"
+          height="26"
+          viewBox="0 0 36 40"
+          fill="none"
+          aria-hidden
+          style={{ transform: "scaleY(-1)" }}
+        >
           <defs>
             <linearGradient id="pickGrad" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#ffe9a8" />

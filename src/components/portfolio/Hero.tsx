@@ -68,10 +68,11 @@ export function Hero() {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="mt-6 max-w-xl text-lg text-muted-foreground md:text-xl"
           >
-            A full-stack engineer who builds calm, expressive interfaces — and a
-            <span className="text-neon"> musician</span> who treats every product like a
-            <span className="text-magenta"> well-tuned instrument</span>. Take a walk through my
-            work.
+            A full-stack engineer who builds scalable systems and thoughtful user interfaces — and a
+            <span className="text-neon"> musician</span> who brings creativity and rhythm into
+            everything I build. I treat every product like a
+            <span className="text-magenta"> well-crafted instrument</span>, where structure, timing,
+            and detail all matter. Take a walk through my work.
           </motion.p>
 
           <motion.div

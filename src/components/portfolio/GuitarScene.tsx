@@ -16,8 +16,8 @@ const TUNING = [82.41, 110.0, 146.83, 196.0, 246.94, 329.63]; // low E .. high E
 // both the nut and the bridge saddle.
 const IMG_W = 1550;
 const IMG_H = 1920;
-const STRING_X_TOP =    [255, 267, 279, 291, 303, 315];
-const STRING_Y_TOP =    [360, 352, 344, 336, 328, 320];
+const STRING_X_TOP = [255, 267, 279, 291, 303, 315];
+const STRING_Y_TOP = [360, 352, 344, 336, 328, 320];
 const STRING_X_BOTTOM = [1020, 1050, 1080, 1110, 1140, 1170];
 const STRING_Y_BOTTOM = [1365, 1371, 1377, 1383, 1389, 1395];
 const HOLE_CX = 770;
@@ -41,7 +41,10 @@ export function GuitarScene() {
       mx.set(((e.clientX - r.left) / r.width) * 2 - 1);
       my.set(((e.clientY - r.top) / r.height) * 2 - 1);
     };
-    const onLeave = () => { mx.set(0); my.set(0); };
+    const onLeave = () => {
+      mx.set(0);
+      my.set(0);
+    };
     el.addEventListener("mousemove", onMove);
     el.addEventListener("mouseleave", onLeave);
     return () => {
@@ -53,7 +56,9 @@ export function GuitarScene() {
   function ensureAudio(): AudioContext | null {
     if (typeof window === "undefined") return null;
     if (!audioRef.current) {
-      const AC = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+      const AC =
+        window.AudioContext ||
+        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
       if (!AC) return null;
       audioRef.current = new AC();
     }
@@ -110,25 +115,39 @@ export function GuitarScene() {
   }
 
   const dragRef = useRef<{ active: boolean; lastIdx: number | null; startX: number }>({
-    active: false, lastIdx: null, startX: 0,
+    active: false,
+    lastIdx: null,
+    startX: 0,
   });
 
-  function stringIndexFromPoint(svg: SVGSVGElement, clientX: number, clientY: number): number | null {
+  function stringIndexFromPoint(
+    svg: SVGSVGElement,
+    clientX: number,
+    clientY: number,
+  ): number | null {
     const rect = svg.getBoundingClientRect();
     const vx = ((clientX - rect.left) / rect.width) * IMG_W;
     const vy = ((clientY - rect.top) / rect.height) * IMG_H;
-    let best = -1, bestD = 45;
+    let best = -1,
+      bestD = 45;
     for (let i = 0; i < 6; i++) {
-      const ax = STRING_X_TOP[i], ay = STRING_Y_TOP[i];
-      const bx = STRING_X_BOTTOM[i], by = STRING_Y_BOTTOM[i];
-      const dx = bx - ax, dy = by - ay;
+      const ax = STRING_X_TOP[i],
+        ay = STRING_Y_TOP[i];
+      const bx = STRING_X_BOTTOM[i],
+        by = STRING_Y_BOTTOM[i];
+      const dx = bx - ax,
+        dy = by - ay;
       const len2 = dx * dx + dy * dy;
       let t = ((vx - ax) * dx + (vy - ay) * dy) / len2;
       if (t < -0.05 || t > 1.05) continue;
       t = Math.max(0, Math.min(1, t));
-      const px = ax + dx * t, py = ay + dy * t;
+      const px = ax + dx * t,
+        py = ay + dy * t;
       const d = Math.hypot(px - vx, py - vy);
-      if (d < bestD) { bestD = d; best = i; }
+      if (d < bestD) {
+        bestD = d;
+        best = i;
+      }
     }
     return best === -1 ? null : best;
   }
@@ -142,12 +161,19 @@ export function GuitarScene() {
         {/* warm stage halo behind the guitar */}
         <motion.div
           className="absolute left-1/2 top-[45%] h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full"
-          style={{ background: "radial-gradient(circle, color-mix(in oklab, var(--neon) 55%, transparent), transparent 65%)", filter: "blur(8px)" }}
+          style={{
+            background:
+              "radial-gradient(circle, color-mix(in oklab, var(--neon) 55%, transparent), transparent 65%)",
+            filter: "blur(8px)",
+          }}
           animate={{ scale: [1, 1.05, 1], opacity: [0.85, 1, 0.85] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        <div className="relative mx-auto h-full" style={{ transform: "translateZ(40px)", aspectRatio: `${IMG_W} / ${IMG_H}` }}>
+        <div
+          className="relative mx-auto h-full"
+          style={{ transform: "translateZ(40px)", aspectRatio: `${IMG_W} / ${IMG_H}` }}
+        >
           <motion.img
             src={guitarImg}
             alt="Acoustic dreadnought guitar"
@@ -169,7 +195,10 @@ export function GuitarScene() {
               svg.setPointerCapture(e.pointerId);
               dragRef.current = { active: true, lastIdx: null, startX: e.clientX };
               const idx = stringIndexFromPoint(svg, e.clientX, e.clientY);
-              if (idx !== null) { emit(idx); dragRef.current.lastIdx = idx; }
+              if (idx !== null) {
+                emit(idx);
+                dragRef.current.lastIdx = idx;
+              }
             }}
             onPointerMove={(e) => {
               if (!dragRef.current.active) return;
@@ -179,15 +208,22 @@ export function GuitarScene() {
                 dragRef.current.lastIdx = idx;
               }
             }}
-            onPointerUp={() => { dragRef.current.active = false; dragRef.current.lastIdx = null; }}
-            onPointerCancel={() => { dragRef.current.active = false; dragRef.current.lastIdx = null; }}
+            onPointerUp={() => {
+              dragRef.current.active = false;
+              dragRef.current.lastIdx = null;
+            }}
+            onPointerCancel={() => {
+              dragRef.current.active = false;
+              dragRef.current.lastIdx = null;
+            }}
           >
             {/* ripples from sound hole */}
             <AnimatePresence>
               {ripples.map((id) => (
                 <motion.circle
                   key={id}
-                  cx={HOLE_CX} cy={HOLE_CY}
+                  cx={HOLE_CX}
+                  cy={HOLE_CY}
                   initial={{ r: 60, opacity: 0.55 }}
                   animate={{ r: 380, opacity: 0 }}
                   exit={{ opacity: 0 }}
@@ -210,23 +246,37 @@ export function GuitarScene() {
               return (
                 <g key={i} style={{ cursor: "pointer" }}>
                   <line
-                    x1={xTop} y1={yTop}
-                    x2={xBot} y2={yBot}
-                    stroke="transparent" strokeWidth="70"
+                    x1={xTop}
+                    y1={yTop}
+                    x2={xBot}
+                    y2={yBot}
+                    stroke="transparent"
+                    strokeWidth="70"
                   />
                   <motion.line
-                    x1={xTop} y1={yTop}
-                    x2={xBot} y2={yBot}
+                    x1={xTop}
+                    y1={yTop}
+                    x2={xBot}
+                    y2={yBot}
                     stroke={color}
                     strokeOpacity={isPlucked ? 0.95 : 0}
                     strokeWidth={1.8 + (5 - i) * 0.5}
-                    style={{ filter: isPlucked ? "drop-shadow(0 0 4px oklch(0.95 0.12 80))" : "none" }}
+                    style={{
+                      filter: isPlucked ? "drop-shadow(0 0 4px oklch(0.95 0.12 80))" : "none",
+                    }}
                     animate={
                       isPlucked
-                        ? { x1: [xTop - 3, xTop + 3, xTop - 1.5, xTop], x2: [xBot - 3, xBot + 3, xBot - 1.5, xBot] }
+                        ? {
+                            x1: [xTop - 3, xTop + 3, xTop - 1.5, xTop],
+                            x2: [xBot - 3, xBot + 3, xBot - 1.5, xBot],
+                          }
                         : { x1: xTop, x2: xBot }
                     }
-                    transition={{ duration: isPlucked ? 0.5 : 0.2, ease: "easeOut", repeat: isPlucked ? 2 : 0 }}
+                    transition={{
+                      duration: isPlucked ? 0.5 : 0.2,
+                      ease: "easeOut",
+                      repeat: isPlucked ? 2 : 0,
+                    }}
                   />
                 </g>
               );
