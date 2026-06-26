@@ -1,12 +1,28 @@
+import { Award } from "lucide-react";
 import { motion } from "motion/react";
 import { Section } from "./Section";
-import { Award } from "lucide-react";
 
 const CERTS = [
-  { name: "AWS Solutions Architect", org: "Amazon", year: "2024" },
-  { name: "Google Cloud Pro Dev", org: "Google", year: "2023" },
-  { name: "Frontend Masters · Advanced React", org: "FEM", year: "2023" },
-  { name: "Web Audio Engineering", org: "Coursera", year: "2022" },
+  {
+    name: "IBM Full Stack Software Developer Professional Certificate",
+    org: "IBM",
+    year: "2025",
+  },
+  {
+    name: "Developing Front-End Apps with React",
+    org: "IBM",
+    year: "2025",
+  },
+  {
+    name: "Getting Started with Git and GitHub",
+    org: "IBM",
+    year: "2025",
+  },
+  {
+    name: "Introduction to Cloud Computing",
+    org: "IBM",
+    year: "2025",
+  },
 ];
 
 export function Certifications() {
@@ -28,11 +44,18 @@ export function Certifications() {
             whileHover={{ y: -6, rotate: -1 }}
             className="panel group relative overflow-hidden p-5"
           >
-            <div className="pointer-events-none absolute -inset-x-10 -top-10 h-24 rotate-12 opacity-0 transition group-hover:opacity-100"
-              style={{ background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--neon) 40%, transparent), transparent)" }} />
+            <div
+              className="pointer-events-none absolute -inset-x-10 -top-10 h-24 rotate-12 opacity-0 transition group-hover:opacity-100"
+              style={{
+                background:
+                  "linear-gradient(90deg, transparent, color-mix(in oklab, var(--neon) 40%, transparent), transparent)",
+              }}
+            />
             <Award className="h-6 w-6 text-magenta" />
             <h4 className="mt-3 text-sm font-semibold leading-snug">{c.name}</h4>
-            <p className="mt-1 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{c.org} · {c.year}</p>
+            <p className="mt-1 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+              {c.org} · {c.year}
+            </p>
           </motion.div>
         ))}
       </div>

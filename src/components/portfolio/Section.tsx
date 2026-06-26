@@ -1,8 +1,12 @@
-import type { ReactNode } from "react";
 import { motion } from "motion/react";
+import type { ReactNode } from "react";
 
 export function Section({
-  id, zone, title, subtitle, children,
+  id,
+  zone,
+  title,
+  subtitle,
+  children,
 }: {
   id: string;
   zone: string;
@@ -19,7 +23,10 @@ export function Section({
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="mb-10 md:mb-14"
       >
-        <span className="hud-chip"><span className="h-1.5 w-1.5 rounded-full bg-[color:var(--neon)] animate-pulse-glow" />Zone · {zone}</span>
+        <span className="hud-chip">
+          <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--neon)] animate-pulse-glow" />
+          Zone · {zone}
+        </span>
         <h2 className="mt-4 text-4xl font-black md:text-6xl">
           <span className="gradient-text">{title}</span>
         </h2>
