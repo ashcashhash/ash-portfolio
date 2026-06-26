@@ -1,70 +1,197 @@
-import { motion } from "motion/react";
+import { useAmbientSynth } from "@/hooks/useAmbientSynth";
+import { motion, useInView } from "motion/react";
+import { useEffect, useRef } from "react";
 import { Section } from "./Section";
 
-const SKILLS: { name: string; level: number; cat: string }[] = [
-  { name: "TypeScript", level: 96, cat: "Core" },
-  { name: "React / Next", level: 95, cat: "Core" },
-  { name: "Node / Edge", level: 90, cat: "Core" },
-  { name: "Three.js / WebGL", level: 82, cat: "Visual" },
-  { name: "Motion / GSAP", level: 88, cat: "Visual" },
-  { name: "Web Audio / WASM", level: 84, cat: "Audio" },
-  { name: "PostgreSQL", level: 86, cat: "Data" },
-  { name: "Design Systems", level: 92, cat: "Craft" },
+const SKILL_GROUPS = [
+  {
+    title: "Frontend",
+    exp: "5+ Years",
+    skills: [
+      "React",
+      "Angular",
+      "Next.js",
+      "TypeScript",
+      "JavaScript",
+      "Tailwind CSS",
+      "HTML5",
+      "CSS3",
+    ],
+  },
+  {
+    title: "Backend",
+    exp: "4+ Years",
+    skills: ["Node.js", "Express", "REST APIs", "Python", "Flask", "Java"],
+  },
+  {
+    title: "AI & Automation",
+    exp: "2+ Years",
+    skills: [
+      "OpenAI APIs",
+      "Prompt Engineering",
+      "AI Workflows",
+      "LLM Integration",
+      "AI Assistants",
+    ],
+  },
+  {
+    title: "Cloud & Data",
+    exp: "4+ Years",
+    skills: ["AWS", "Snowflake", "PostgreSQL", "SQL", "MongoDB"],
+  },
+  {
+    title: "Engineering",
+    exp: "5+ Years",
+    skills: [
+      "System Design",
+      "Solution Architecture",
+      "CI/CD",
+      "Git",
+      "Docker",
+      "Postman",
+      "Jira",
+      "Agile",
+      "Code Reviews",
+      "Mentoring",
+    ],
+  },
 ];
 
 export function Skills() {
-  return (
-    <Section
-      id="skills"
-      zone="07 · Skills"
-      title="Tools I reach for"
-      subtitle="The instruments I play in my day-to-day work."
-    >
-      <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
-        {/* equalizer */}
-        <div className="panel relative overflow-hidden p-6">
-          <div className="mb-4 flex items-baseline justify-between">
-            <h3 className="text-xl">Studio equalizer</h3>
-            <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Now playing</span>
-          </div>
-          <div className="flex h-48 items-end justify-between gap-1.5">
-            {Array.from({ length: 28 }).map((_, i) => (
-              <motion.span
-                key={i}
-                className="flex-1 rounded-sm"
-                style={{ background: i % 3 === 0 ? "var(--neon-2)" : "var(--neon)" }}
-                animate={{ height: [`${15 + (i % 7) * 8}%`, `${40 + ((i * 13) % 55)}%`, `${20 + (i % 9) * 7}%`] }}
-                transition={{ duration: 0.9 + (i % 5) * 0.15, repeat: Infinity, ease: "easeInOut", delay: i * 0.04 }}
-              />
-            ))}
-          </div>
-          <div className="mt-4 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-            Track 01 — &quot;Quiet Mornings, Loud Ideas&quot;
-          </div>
-        </div>
+  const sectionRef = useRef<HTMLDivElement>(null);
 
-        {/* skill bars */}
-        <div className="panel p-6">
-          <ul className="space-y-4">
-            {SKILLS.map((s, i) => (
-              <li key={s.name}>
-                <div className="flex justify-between text-sm">
-                  <span><span className="text-foreground">{s.name}</span> <span className="ml-2 font-mono text-[10px] uppercase text-muted-foreground">{s.cat}</span></span>
-                  <span className="font-mono text-[10px] text-neon">{s.level}</span>
-                </div>
-                <div className="mt-1.5 h-2 w-full overflow-hidden rounded-full bg-background/60">
-                  <motion.div
-                    initial={{ width: 0 }} whileInView={{ width: `${s.level}%` }} viewport={{ once: true }}
-                    transition={{ duration: 1.1, delay: i * 0.06, ease: "easeOut" }}
-                    className="h-full rounded-full"
-                    style={{ background: "linear-gradient(90deg, var(--neon), var(--neon-2))" }}
-                  />
-                </div>
-              </li>
-            ))}
-          </ul>
+  const inView = useInView(sectionRef, {
+    amount: 0.55,
+  });
+
+  const { start, stop } = useAmbientSynth();
+
+  // useEffect(() => {
+  //   if (inView) {
+  //     start();
+  //   } else {
+  //     stop();
+  //   }
+  // }, [inView, start, stop]);
+
+  return (
+    <div ref={sectionRef}>
+      <Section
+        id="skills"
+        zone="07 · Engineering"
+        title="Engineering Toolkit"
+        subtitle="Technologies and practices I use to build scalable enterprise software and AI-powered products."
+      >
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
+          {/* Left Panel */}
+          <div className="panel relative overflow-hidden p-6">
+            <div className="mb-4 flex items-center justify-between">
+              <h3 className="text-xl">Engineering Pulse</h3>
+
+              <span className="font-mono text-[10px] uppercase tracking-widest text-neon">
+                LIVE
+              </span>
+            </div>
+
+            <div className="flex h-56 items-end justify-between gap-1.5">
+              {Array.from({ length: 32 }).map((_, i) => (
+                <motion.span
+                  key={i}
+                  className="flex-1 rounded-sm"
+                  style={{
+                    background: i % 3 === 0 ? "var(--neon-2)" : "var(--neon)",
+                  }}
+                  animate={{
+                    height: [
+                      `${15 + (i % 7) * 8}%`,
+                      `${35 + ((i * 17) % 55)}%`,
+                      `${20 + (i % 9) * 7}%`,
+                    ],
+                  }}
+                  transition={{
+                    duration: 1 + (i % 5) * 0.15,
+                    repeat: Infinity,
+                    repeatType: "mirror",
+                    ease: "easeInOut",
+                    delay: i * 0.03,
+                  }}
+                />
+              ))}
+            </div>
+
+            <div className="mt-8 space-y-3">
+              <div className="font-mono text-xs uppercase tracking-[0.25em] text-neon">
+                Current Focus
+              </div>
+
+              <p className="text-sm leading-7 text-muted-foreground">
+                Building enterprise-scale web applications, architecting cloud solutions, and
+                integrating AI to deliver faster, smarter user experiences.
+              </p>
+
+              <div className="flex flex-wrap gap-2 pt-2">
+                {["React", "Angular", "Node.js", "Snowflake", "AWS", "OpenAI"].map((item) => (
+                  <motion.span
+                    key={item}
+                    whileHover={{
+                      scale: 1.08,
+                    }}
+                    className="rounded-full border border-[var(--neon)]/30 px-3 py-1 text-xs transition-colors hover:border-[var(--neon)] hover:bg-[var(--neon)]/10"
+                  >
+                    {item}
+                  </motion.span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Right Panel */}
+          <div className="panel p-6">
+            <h3 className="mb-6 text-xl">Technology Stack</h3>
+
+            <div className="space-y-6">
+              {SKILL_GROUPS.map((group, i) => (
+                <motion.div
+                  key={group.title}
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.45,
+                    delay: i * 0.08,
+                  }}
+                >
+                  <div className="mb-3 flex items-center justify-between">
+                    <h4 className="font-semibold">{group.title}</h4>
+
+                    <span className="font-mono text-[11px] uppercase tracking-wider text-neon">
+                      {group.exp}
+                    </span>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {group.skills.map((skill) => (
+                      <motion.span
+                        key={skill}
+                        whileHover={{
+                          y: -2,
+                          scale: 1.04,
+                        }}
+                        transition={{
+                          duration: 0.15,
+                        }}
+                        className="rounded-full border border-border bg-background/50 px-3 py-1 text-xs transition-colors hover:border-[var(--neon)] hover:bg-[var(--neon)]/10 hover:text-foreground"
+                      >
+                        {skill}
+                      </motion.span>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
-    </Section>
+      </Section>
+    </div>
   );
 }

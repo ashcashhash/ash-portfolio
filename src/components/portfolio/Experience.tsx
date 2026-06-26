@@ -2,27 +2,65 @@ import { Disc3 } from "lucide-react";
 import { motion } from "motion/react";
 import { Section } from "./Section";
 
+// const QUESTS = [
+//   {
+//     year: "2025 — Now",
+//     role: "Consultant · ZS Associates",
+//     focus: "Designed Well Architected Solutions & AI Enabled Workflows",
+//     log: "Designed and shipped multiple web apps for Big Pharma clients. Leading the team of 50+ members",
+//     tags: ["Performance", "Leadership"],
+//   },
+//   {
+//     year: "2023 — 2025",
+//     role: "Associate Consultant · ZS Associates",
+//     focus: "Pharma Process Reimagined platform",
+//     log: "Built multiple web apps for Big Pharma clients. Led the frontend team, introduced React 18 + TypeScript, and shipped a design system with motion and accessibility baked in.",
+//     tags: ["Full-Stack", "Design systems", "Developer experience"],
+//   },
+//   {
+//     year: "2020 — 2022",
+//     role: "Associate · ZS Associates",
+//     focus: "Cross-product design system",
+//     log: "Owned the design system across 14 apps. TS-first components, motion guidelines, and accessibility built in from day one.",
+//     tags: ["Design systems", "Accessibility", "Frontend"],
+//   },
+//   {
+//     year: "2020",
+//     role: "Intern · ZS Associates",
+//     focus: "First production codebase",
+//     log: "Learned the craft on a small team shipping Angular + Flask apps for Capabilities showcase. Created my first pull request here.",
+//     tags: ["Angular", "Flask", "GitHub"],
+//   },
+// ];
+
 const QUESTS = [
   {
-    year: "2025 — Now",
+    year: "2025 — Present",
     role: "Consultant · ZS Associates",
-    focus: "Designed Well Architected Solutions & AI Enabled Workflows",
-    log: "Designed and shipped multiple web apps for Big Pharma clients. Leading the team of 50+ members",
-    tags: ["Performance", "Leadership"],
+    focus: "AI-Enabled Applications & Solution Architecture",
+    log: "Leading the design and development of scalable full-stack applications for global pharmaceutical clients. Driving solution architecture, AI adoption, technical strategy, and mentoring engineering teams.",
+    tags: ["Architecture", "AI", "Leadership"],
   },
   {
-    year: "2023 — 2025",
+    year: "2024 — 2025",
+    role: "Senior Associate Consultant · ZS Associates",
+    focus: "Full-Stack Product Development",
+    log: "Developed and enhanced enterprise web applications using React, Angular, Node.js, and Snowflake. Led feature delivery, conducted code reviews, mentored junior engineers, and collaborated closely with clients.",
+    tags: ["React", "Node.js", "Snowflake"],
+  },
+  {
+    year: "2022 — 2023",
     role: "Associate Consultant · ZS Associates",
-    focus: "Pharma Process Reimagined platform",
-    log: "Built multiple web apps for Big Pharma clients. Led the frontend team, introduced React 18 + TypeScript, and shipped a design system with motion and accessibility baked in.",
-    tags: ["Full-Stack", "Design systems", "Developer experience"],
+    focus: "Enterprise Web Applications",
+    log: "Built scalable web applications and REST APIs while contributing across frontend and backend. Worked with cross-functional teams to deliver high-quality solutions for pharmaceutical platforms.",
+    tags: ["Angular", "REST APIs", "Full-Stack"],
   },
   {
     year: "2020 — 2022",
-    role: "Associate · ZS Associates",
-    focus: "Cross-product design system",
-    log: "Owned the design system across 14 apps. TS-first components, motion guidelines, and accessibility built in from day one.",
-    tags: ["Design systems", "Accessibility", "Frontend"],
+    role: "Business Technology Solutions Associate · ZS Associates",
+    focus: "Application Development",
+    log: "Started as a full-stack engineer building enterprise applications with Angular, Flask, and SQL while learning software engineering best practices in an agile environment.",
+    tags: ["Angular", "Flask", "SQL"],
   },
   {
     year: "2020",
