@@ -5,9 +5,14 @@ import * as Tone from "tone";
 export function useAmbientSynth() {
   const started = useRef(false);
   const loop = useRef<Tone.Loop | null>(null);
+  const fadeTimer = useRef<number | null>(null);
 
   useEffect(() => {
     return () => {
+      if (fadeTimer.current !== null) {
+        window.clearTimeout(fadeTimer.current);
+      }
+
       loop.current?.dispose();
       Tone.Transport.stop();
       Tone.Transport.cancel();
@@ -15,9 +20,13 @@ export function useAmbientSynth() {
   }, []);
 
   const start = useCallback(async () => {
-    if (!started.current) {
+    try {
       await Tone.start();
+    } catch {
+      return false;
+    }
 
+    if (!started.current) {
       //-----------------------------------
       // Effects
       //-----------------------------------
@@ -80,15 +89,33 @@ export function useAmbientSynth() {
       loop.current.start(0);
       Tone.Transport.start();
 
+      Tone.getDestination().volume.value = -60;
+      Tone.getDestination().volume.rampTo(-18, 0.8);
+
       started.current = true;
     } else {
-      await Tone.start();
       Tone.Transport.start();
+      Tone.getDestination().volume.rampTo(-18, 0.8);
     }
+
+    return true;
   }, []);
 
   const stop = useCallback(() => {
-    Tone.Transport.stop();
+    if (!started.current) {
+      return;
+    }
+
+    Tone.getDestination().volume.rampTo(-60, 0.7);
+
+    if (fadeTimer.current !== null) {
+      window.clearTimeout(fadeTimer.current);
+    }
+
+    fadeTimer.current = window.setTimeout(() => {
+      Tone.Transport.stop();
+      fadeTimer.current = null;
+    }, 700);
   }, []);
 
   return {

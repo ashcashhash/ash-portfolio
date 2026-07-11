@@ -1,6 +1,5 @@
-import { useAmbientSynth } from "@/hooks/useAmbientSynth";
 import { motion, useInView } from "motion/react";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { Section } from "./Section";
 
 const SKILL_GROUPS = [
@@ -63,16 +62,6 @@ export function Skills() {
   const inView = useInView(sectionRef, {
     amount: 0.55,
   });
-
-  const { start, stop } = useAmbientSynth();
-
-  // useEffect(() => {
-  //   if (inView) {
-  //     start();
-  //   } else {
-  //     stop();
-  //   }
-  // }, [inView, start, stop]);
 
   return (
     <div ref={sectionRef}>
