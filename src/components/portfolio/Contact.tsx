@@ -81,11 +81,6 @@ export function Contact() {
           </ul>
         </div>
       </div>
-
-      <footer className="mt-16 flex flex-col items-center justify-between gap-3 border-t border-border/40 pt-6 font-mono text-[10px] uppercase tracking-widest text-muted-foreground md:flex-row">
-        <span>© {new Date().getFullYear()} ashcashhash.com · Built with care &amp; React</span>
-        <span>Made with music on & Diet Coke</span>
-      </footer>
     </Section>
   );
 }

@@ -9,6 +9,7 @@ import { HUD } from "@/components/portfolio/HUD";
 import { Marquee } from "@/components/portfolio/Marquee";
 import { Projects } from "@/components/portfolio/Projects";
 import { Skills } from "@/components/portfolio/Skills";
+import { WallOfFame } from "@/components/portfolio/WallOfFame";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
@@ -50,6 +51,7 @@ function Index() {
       <Certifications />
       <Skills />
       <Contact />
+      <WallOfFame />
     </main>
   );
 }

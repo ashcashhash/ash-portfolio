@@ -1,6 +1,6 @@
+import { AudioLines, Menu, X } from "lucide-react";
 import { motion, useScroll, useSpring } from "motion/react";
 import { useEffect, useState } from "react";
-import { AudioLines, Menu, X } from "lucide-react";
 
 const ZONES = [
   { id: "about", label: "About" },
@@ -8,6 +8,7 @@ const ZONES = [
   { id: "projects", label: "Projects" },
   { id: "skills", label: "Skills" },
   { id: "contact", label: "Contact" },
+  { id: "wall-of-fame", label: "Wall of Fame" },
 ];
 
 export function HUD() {
@@ -17,19 +18,31 @@ export function HUD() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) setActive(e.target.id);
-        });
-      },
-      { rootMargin: "-45% 0px -50% 0px" },
-    );
-    ["hero", ...ZONES.map((z) => z.id)].forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) obs.observe(el);
-    });
-    return () => obs.disconnect();
+    const targets = ["hero", ...ZONES.map((z) => z.id)]
+      .map((id) => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[];
+
+    if (!targets.length) return;
+
+    const updateActiveSection = () => {
+      const viewportOffset = 140;
+      const currentTarget = targets.reduce((closest, target) => {
+        const currentDistance = Math.abs(target.getBoundingClientRect().top - viewportOffset);
+        const closestDistance = Math.abs(closest.getBoundingClientRect().top - viewportOffset);
+        return currentDistance < closestDistance ? target : closest;
+      }, targets[0]);
+
+      setActive(currentTarget.id);
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
   }, []);
 
   return (
