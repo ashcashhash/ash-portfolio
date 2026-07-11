@@ -1,7 +1,7 @@
+/* eslint-disable prettier/prettier */
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import { useEffect, useRef, useState } from "react";
-import guitarAsset from "@/assets/guitar.png.asset.json";
-const guitarImg = guitarAsset.url;
+const guitarImg = "guitar.png";
 
 /**
  * A photoreal acoustic dreadnought rendered from a hand-painted asset, with
