@@ -1,4 +1,4 @@
-name: Deploy Portfolio
+name: Build & Deploy Portfolio
 
 on:
   push:
@@ -10,23 +10,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: 🟢 Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
 
-      - run: npm i
+      - name: 📦 Install Dependencies
+        run: npm install
 
-      - run: npm run build
+      - name: 🏗 Build Project
+        run: npm run build
 
-      - name: Deploy
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: 🚀 Upload to Hostinger
+        uses: Dylan700/sftp-upload-action@latest
         with:
           server: ${{ secrets.HOSTINGER_HOST }}
           username: ${{ secrets.HOSTINGER_USERNAME }}
           password: ${{ secrets.HOSTINGER_PASSWORD }}
           port: ${{ secrets.HOSTINGER_PORT }}
-          local-dir: dist/
-          server-dir: ${{ secrets.HOSTINGER_TARGET_DIR }}/
+          uploads: |
+            ./dist => ${{ secrets.HOSTINGER_TARGET_DIR }}
